@@ -6,14 +6,14 @@
 #    By: eguelin <eguelin@student.42lyon.fr>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/09/30 15:03:56 by eguelin           #+#    #+#              #
-#    Updated: 2023/09/30 18:34:31 by eguelin          ###   ########lyon.fr    #
+#    Updated: 2023/09/30 18:41:35 by eguelin          ###   ########lyon.fr    #
 #                                                                              #
 # **************************************************************************** #
 
 #Standard
 OUT_DIR	= build/
 SRC_DIR	= src/
-NAME	= ...
+NAME	= megaphone
 CC		= c++
 CFLAGS	= -Wall -Werror -Wextra -std=c++98
 RM		= rm -rf
