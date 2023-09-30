@@ -6,14 +6,14 @@
 #    By: eguelin <eguelin@student.42lyon.fr>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/09/30 15:03:56 by eguelin           #+#    #+#              #
-#    Updated: 2023/09/30 16:49:26 by eguelin          ###   ########lyon.fr    #
+#    Updated: 2023/09/30 18:34:31 by eguelin          ###   ########lyon.fr    #
 #                                                                              #
 # **************************************************************************** #
 
 #Standard
 OUT_DIR	= build/
 SRC_DIR	= src/
-NAME	= megaphone
+NAME	= ...
 CC		= c++
 CFLAGS	= -Wall -Werror -Wextra -std=c++98
 RM		= rm -rf
@@ -42,11 +42,11 @@ OBJS			= $(addprefix $(OUT_DIR), $(ALL_FILES:.cpp=.o))
 #Rules
 all: $(NAME)
 
-$(NAME): $(OUT_DIR) $(OBJS) $(LIB)
-	$(CC) $(CFLAGS) $(OBJS) $(LIB) -o $(NAME)
+$(NAME): $(OUT_DIR) $(OBJS)
+	$(CC) $(CFLAGS) $(OBJS) -o $(NAME)
 	@echo $(COMP_MSG)
 
-$(OUT_DIR)%.o : $(SRC_DIR)%.cpp Makefile $(HEADERS)
+$(OUT_DIR)%.o : $(SRC_DIR)%.cpp
 	$(CC) $(CFLAGS) -c $< -o $@
 
 clean:
@@ -62,7 +62,7 @@ force:
 re: fclean all
 
 $(OUT_DIR): force
-	mkdir -p build
+	mkdir -p $(OUT_DIR)
 
 .PHONY: all clean fclean force re
 .SILENT:
