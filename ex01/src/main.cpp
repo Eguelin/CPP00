@@ -6,7 +6,7 @@
 /*   By: eguelin <eguelin@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/30 19:39:04 by eguelin           #+#    #+#             */
-/*   Updated: 2023/10/01 18:31:54 by eguelin          ###   ########lyon.fr   */
+/*   Updated: 2023/10/01 19:34:13 by eguelin          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,14 +15,14 @@
 int main(void)
 {
 	PhoneBook	PhoneBook;
-	std::string	str;
+	std::string	line;
 
-	while (str != "EXIT")
+	while (line != "EXIT")
 	{
-		std::cin >> str;
-		if (str == "ADD")
+		std::getline(std::cin, line);
+		if (line == "ADD")
 			PhoneBook.add();
-		else if (str == "SEARCH")
+		else if (line == "SEARCH")
 			PhoneBook.search();
 	}
 	return (0);

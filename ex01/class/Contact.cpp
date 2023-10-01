@@ -6,7 +6,7 @@
 /*   By: eguelin <eguelin@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/30 19:05:25 by eguelin           #+#    #+#             */
-/*   Updated: 2023/10/01 18:15:07 by eguelin          ###   ########lyon.fr   */
+/*   Updated: 2023/10/01 19:34:39 by eguelin          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,13 +69,13 @@ void	Contact::setdata(int data, std::string str)
 
 void	Contact::setcontact(void)
 {
-	std::string	str;
+	std::string	line;
 
 	for (size_t i = FIRST_NAME; i <= DARKEST_SECRET; i++)
 	{
 		ft_print_prompt(i);
-		std::cin >> str;
-		setdata(i, str);
+		std::getline(std::cin, line);
+		setdata(i, line);
 	}
 }
 
