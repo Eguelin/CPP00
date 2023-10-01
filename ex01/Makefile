@@ -6,7 +6,7 @@
 #    By: eguelin <eguelin@student.42lyon.fr>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/09/30 15:03:56 by eguelin           #+#    #+#              #
-#    Updated: 2023/09/30 19:59:45 by eguelin          ###   ########lyon.fr    #
+#    Updated: 2023/10/01 13:00:43 by eguelin          ###   ########lyon.fr    #
 #                                                                              #
 # **************************************************************************** #
 
@@ -17,7 +17,7 @@ INC_DIR	= include/
 SRC_DIR	= src/
 NAME	= My_Awesome_PhoneBook
 CC		= c++
-CFLAGS	= -Wall -Werror -Wextra -std=c++98 -I $(INC_DIR) -I $(INC_DIR)$(CLS_DIR)
+CFLAGS	= -Wall -Werror -Wextra -std=c++98 -I $(INC_DIR) -I $(CLS_DIR)
 RM		= rm -rf
 ARC		= ar rcs
 
@@ -40,10 +40,8 @@ FULL_CLEAN_MSG	= "$(PURPLE)Full cleaning $(NAME) $(WHITE)done on $(YELLOW)$(shel
 INC_FILES		= My_Awesome_PhoneBook.hpp
 
 INC_CLS			= Contact.hpp PhoneBook.hpp
-INC_FILES		+= $(addprefix $(CLS_DIR), $(INC_CLS))
 
-HEADERS			= $(addprefix $(INC_DIR), $(INC_FILES))
-
+HEADERS			= $(addprefix $(INC_DIR), $(INC_FILES)) $(addprefix $(CLS_DIR), $(INC_CLS))
 
 ALL_FILES		= main.cpp
 
@@ -52,9 +50,8 @@ ALL_FILES		= main.cpp
 # ALL_FILES		+= $(addprefix $(EXEC_DIR)$(..._DIR), $(..._FILES))
 
 CLS_FILES		= Contact.cpp PhoneBook.cpp
-ALL_FILES		+= $(addprefix $(CLS_DIR), $(CLS_FILES))
 
-OBJS			= $(addprefix $(OUT_DIR), $(ALL_FILES:.cpp=.o))
+OBJS			+= $(addprefix $(OUT_DIR), $(ALL_FILES:.cpp=.o) $(CLS_FILES:.cpp=.o))
 
 
 #Rules
@@ -65,6 +62,9 @@ $(NAME): $(OUT_DIR) $(OBJS)
 	@echo $(COMP_MSG)
 
 $(OUT_DIR)%.o : $(SRC_DIR)%.cpp $(HEADERS)
+	$(CC) $(CFLAGS) -c $< -o $@
+
+$(OUT_DIR)%.o : $(CLS_DIR)%.cpp $(HEADERS)
 	$(CC) $(CFLAGS) -c $< -o $@
 
 clean:
@@ -80,7 +80,7 @@ force:
 re: fclean all
 
 $(OUT_DIR): force
-	mkdir -p $(OUT_DIR)$(CLS_DIR)
+	mkdir -p $(OUT_DIR)
 
 .PHONY: all clean fclean force re
 .SILENT:

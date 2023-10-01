@@ -1,25 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Contact.hpp                                        :+:      :+:    :+:   */
+/*   PhoneBook.hpp                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: eguelin <eguelin@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/09/30 19:05:19 by eguelin           #+#    #+#             */
-/*   Updated: 2023/09/30 19:29:42 by eguelin          ###   ########lyon.fr   */
+/*   Created: 2023/09/30 19:07:28 by eguelin           #+#    #+#             */
+/*   Updated: 2023/10/01 15:17:31 by eguelin          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef SCONTACT_HPP
-#define SCONTACT_HPP
+#ifndef PHONEBOOK_HPP
+# define PHONEBOOK_HPP
 
-class Contact
+#include "Contact.hpp"
+
+class PhoneBook
 {
 private:
 	/* data */
 public:
-	Contact(/* args */);
-	~Contact();
+
+	Contact	contact[8];
+
+	PhoneBook(void);
+	~PhoneBook(void);
 };
 
 #endif
