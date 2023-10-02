@@ -6,7 +6,7 @@
 /*   By: eguelin <eguelin@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/30 19:05:19 by eguelin           #+#    #+#             */
-/*   Updated: 2023/10/01 18:18:29 by eguelin          ###   ########lyon.fr   */
+/*   Updated: 2023/10/02 11:41:40 by eguelin          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,8 +41,7 @@ class Contact
 
 		std::string	getdata(int data) const;
 		void		setdata(int data, std::string str);
-		void		setcontact(void);
-		void		print_contact(void) const;
+		std::string	ft_prompt(int data) const;
 };
 
 #endif

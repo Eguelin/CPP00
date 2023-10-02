@@ -6,7 +6,7 @@
 #    By: eguelin <eguelin@student.42lyon.fr>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/09/30 15:03:56 by eguelin           #+#    #+#              #
-#    Updated: 2023/10/01 13:00:43 by eguelin          ###   ########lyon.fr    #
+#    Updated: 2023/10/02 15:58:26 by eguelin          ###   ########lyon.fr    #
 #                                                                              #
 # **************************************************************************** #
 
@@ -37,13 +37,13 @@ CLEAN_MSG		= "$(RED)Cleaning $(NAME) $(WHITE)done on $(YELLOW)$(shell date +'%Y-
 FULL_CLEAN_MSG	= "$(PURPLE)Full cleaning $(NAME) $(WHITE)done on $(YELLOW)$(shell date +'%Y-%m-%d %H:%M:%S')$(WHITE)"
 
 #Sources
-INC_FILES		= My_Awesome_PhoneBook.hpp
+INC_FILES		= ft_utils.hpp
 
 INC_CLS			= Contact.hpp PhoneBook.hpp
 
 HEADERS			= $(addprefix $(INC_DIR), $(INC_FILES)) $(addprefix $(CLS_DIR), $(INC_CLS))
 
-ALL_FILES		= main.cpp
+ALL_FILES		= main.cpp ft_utils.cpp
 
 # ..._DIR			= ../
 # ..._FILES		= .cpp

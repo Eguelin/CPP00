@@ -6,14 +6,11 @@
 /*   By: eguelin <eguelin@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/30 19:05:25 by eguelin           #+#    #+#             */
-/*   Updated: 2023/10/01 19:34:39 by eguelin          ###   ########lyon.fr   */
+/*   Updated: 2023/10/02 15:55:49 by eguelin          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Contact.hpp"
-#include <iostream>
-
-static void	ft_print_prompt(int data);
 
 Contact::Contact(void)
 {
@@ -37,7 +34,7 @@ std::string	Contact::getdata(int data) const
 		case DARKEST_SECRET:
 			return (Contact::_darkest_secret);
 		default:
-			std::cout << "Invalid data" << std::endl;
+			std::cout << "\033[0;31mInvalid data\033[0;0m" << std::endl;
 			return ("");
 	}
 }
@@ -62,53 +59,26 @@ void	Contact::setdata(int data, std::string str)
 			Contact::_darkest_secret = str;
 			return ;
 		default:
-			std::cout << "Invalid data" << std::endl;
+			std::cout << "\033[0;31mInvalid data\033[0;0m" << std::endl;
 			return ;
 	}
 }
 
-void	Contact::setcontact(void)
-{
-	std::string	line;
-
-	for (size_t i = FIRST_NAME; i <= DARKEST_SECRET; i++)
-	{
-		ft_print_prompt(i);
-		std::getline(std::cin, line);
-		setdata(i, line);
-	}
-}
-
-void	Contact::print_contact(void) const
-{
-	for (size_t i = FIRST_NAME; i <= DARKEST_SECRET; i++)
-	{
-		ft_print_prompt(i);
-		std::cout << getdata(i) << std::endl;
-	}
-}
-
-static void	ft_print_prompt(int data)
+std::string	Contact::ft_prompt(int data) const
 {
 	switch (data)
 	{
 		case FIRST_NAME:
-			std::cout << "First name : ";
-			return ;
+			return ("First name : ");
 		case LAST_NAME:
-			std::cout << "Last name : ";
-			return ;
+			return ("Last name : ");
 		case NICKNAME:
-			std::cout << "Nickname : ";
-			return ;
+			return ("Nickname : ");
 		case PHONE_NUMBER:
-			std::cout << "Phone number : ";;
-			return ;
+			return ("Phone number : ");
 		case DARKEST_SECRET:
-			std::cout << "Darkest secret : ";
-			return ;
+			return ("Darkest secret : ");
 		default:
-			std::cout << "Invalid data" << std::endl;
-			return ;
+			return ("\033[0;31mInvalid data\033[0;0m");
 	}
 }
