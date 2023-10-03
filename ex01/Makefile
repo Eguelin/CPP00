@@ -6,7 +6,7 @@
 #    By: eguelin <eguelin@student.42lyon.fr>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/09/30 15:03:56 by eguelin           #+#    #+#              #
-#    Updated: 2023/10/02 15:58:26 by eguelin          ###   ########lyon.fr    #
+#    Updated: 2023/10/03 14:51:53 by eguelin          ###   ########lyon.fr    #
 #                                                                              #
 # **************************************************************************** #
 
@@ -45,14 +45,9 @@ HEADERS			= $(addprefix $(INC_DIR), $(INC_FILES)) $(addprefix $(CLS_DIR), $(INC_
 
 ALL_FILES		= main.cpp ft_utils.cpp
 
-# ..._DIR			= ../
-# ..._FILES		= .cpp
-# ALL_FILES		+= $(addprefix $(EXEC_DIR)$(..._DIR), $(..._FILES))
-
 CLS_FILES		= Contact.cpp PhoneBook.cpp
 
 OBJS			+= $(addprefix $(OUT_DIR), $(ALL_FILES:.cpp=.o) $(CLS_FILES:.cpp=.o))
-
 
 #Rules
 all: $(NAME)
