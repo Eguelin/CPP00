@@ -4,4 +4,5 @@ a.out*
 build
 megaphone
 My_Awesome_PhoneBook
-19920104_091532.log
+Class_Account_tests
+*.log
