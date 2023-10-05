@@ -6,7 +6,7 @@
 /*   By: eguelin <eguelin@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/30 19:05:25 by eguelin           #+#    #+#             */
-/*   Updated: 2023/10/05 12:43:28 by eguelin          ###   ########lyon.fr   */
+/*   Updated: 2023/10/05 15:20:50 by eguelin          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,63 +22,39 @@ Contact::~Contact( void )
 
 std::string	Contact::getdata( int data ) const
 {
-	switch (data) {
-		case FIRST_NAME:
-			return (Contact::_first_name);
-		case LAST_NAME:
-			return (Contact::_last_name);
-		case NICKNAME:
-			return (Contact::_nickname);
-		case PHONE_NUMBER:
-			return (Contact::_phone_number);
-		case DARKEST_SECRET:
-			return (Contact::_darkest_secret);
-		default:
-			std::cout << "\033[0;31mInvalid data\033[0;0m" << std::endl;
-			return ("");
+	std::string	const str_data[] = {Contact::_first_name, Contact::_last_name, Contact::_nickname, \
+						Contact::_phone_number, Contact::_darkest_secret};
+
+	if (data < FIRST_NAME || data > DARKEST_SECRET)
+	{
+		std::cerr << "\033[0;31mInvalid data\033[0;0m" << std::endl;
+		return ("");
 	}
+
+	return (str_data[data]);
 }
 
 void	Contact::setdata( int data, std::string str )
 {
-	switch (data)
-	{
-		case FIRST_NAME:
-			Contact::_first_name = str;
-			return ;
-		case LAST_NAME:
-			Contact::_last_name = str;
-			return ;
-		case NICKNAME:
-			Contact::_nickname = str;
-			return ;
-		case PHONE_NUMBER:
-			Contact::_phone_number = str;
-			return ;
-		case DARKEST_SECRET:
-			Contact::_darkest_secret = str;
-			return ;
-		default:
-			std::cout << "\033[0;31mInvalid data\033[0;0m" << std::endl;
-			return ;
-	}
+	std::string	*str_data[] = {&this->_first_name, &this->_last_name, &this->_nickname, \
+						&this->_phone_number, &this->_darkest_secret};
+
+	if (data < FIRST_NAME || data > DARKEST_SECRET)
+		std::cerr << "\033[0;31mInvalid data\033[0;0m" << std::endl;
+
+	*str_data[data] = str;
 }
 
 std::string	Contact::ft_prompt( int data ) const
 {
-	switch (data)
+	std::string	const prompt[] = {"First name : ", "Last name : ", "Nickname : ", \
+							"Phone number : ", "Darkest secret : "};
+
+	if (data < FIRST_NAME || data > DARKEST_SECRET)
 	{
-		case FIRST_NAME:
-			return ("First name : ");
-		case LAST_NAME:
-			return ("Last name : ");
-		case NICKNAME:
-			return ("Nickname : ");
-		case PHONE_NUMBER:
-			return ("Phone number : ");
-		case DARKEST_SECRET:
-			return ("Darkest secret : ");
-		default:
-			return ("\033[0;31mInvalid data\033[0;0m");
+		std::cerr << "\033[0;31mInvalid data\033[0;0m" << std::endl;
+		return ("");
 	}
+
+	return (prompt[data]);
 }

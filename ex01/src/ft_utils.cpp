@@ -6,7 +6,7 @@
 /*   By: eguelin <eguelin@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/02 13:47:18 by eguelin           #+#    #+#             */
-/*   Updated: 2023/10/05 12:59:00 by eguelin          ###   ########lyon.fr   */
+/*   Updated: 2023/10/05 15:19:56 by eguelin          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ int	ft_check_index( std::string str, int max )
 	index = std::atoi(str.c_str()) - 1;
 	if (index < 0 || index > max || it != str.end())
 	{
-		std::cout << "\033[0;31mInvalid index\033[0;0m" << std::endl;
+		std::cerr << "\033[0;31mInvalid index\033[0;0m" << std::endl;
 		return (-1);
 	}
 
