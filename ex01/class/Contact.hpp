@@ -6,7 +6,7 @@
 /*   By: eguelin <eguelin@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/30 19:05:19 by eguelin           #+#    #+#             */
-/*   Updated: 2023/10/02 11:41:40 by eguelin          ###   ########lyon.fr   */
+/*   Updated: 2023/10/05 12:43:54 by eguelin          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,12 +36,12 @@ class Contact
 
 	public:
 
-		Contact(void);
-		~Contact(void);
+		Contact( void );
+		~Contact( void );
 
-		std::string	getdata(int data) const;
-		void		setdata(int data, std::string str);
-		std::string	ft_prompt(int data) const;
+		std::string	getdata( int data ) const;
+		void		setdata( int data, std::string str );
+		std::string	ft_prompt( int data ) const;
 };
 
 #endif

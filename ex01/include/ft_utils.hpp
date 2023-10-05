@@ -6,7 +6,7 @@
 /*   By: eguelin <eguelin@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/30 19:28:39 by eguelin           #+#    #+#             */
-/*   Updated: 2023/10/02 15:58:52 by eguelin          ###   ########lyon.fr   */
+/*   Updated: 2023/10/05 12:45:18 by eguelin          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 #include "PhoneBook.hpp"
 #include <cstdlib>
 
-int	ft_check_index(std::string str, int max);
-int	ft_check_line(std::string str);
+int	ft_check_index( std::string str, int max );
+int	ft_check_line( std::string str );
 
 #endif

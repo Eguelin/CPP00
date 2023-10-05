@@ -6,13 +6,13 @@
 /*   By: eguelin <eguelin@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/30 19:39:04 by eguelin           #+#    #+#             */
-/*   Updated: 2023/10/02 15:56:50 by eguelin          ###   ########lyon.fr   */
+/*   Updated: 2023/10/05 12:56:17 by eguelin          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "PhoneBook.hpp"
 
-int main(void)
+int main( void )
 {
 	PhoneBook	PhoneBook;
 	std::string	line;

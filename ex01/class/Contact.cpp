@@ -6,21 +6,21 @@
 /*   By: eguelin <eguelin@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/30 19:05:25 by eguelin           #+#    #+#             */
-/*   Updated: 2023/10/02 15:55:49 by eguelin          ###   ########lyon.fr   */
+/*   Updated: 2023/10/05 12:43:28 by eguelin          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Contact.hpp"
 
-Contact::Contact(void)
+Contact::Contact( void )
 {
 }
 
-Contact::~Contact(void)
+Contact::~Contact( void )
 {
 }
 
-std::string	Contact::getdata(int data) const
+std::string	Contact::getdata( int data ) const
 {
 	switch (data) {
 		case FIRST_NAME:
@@ -39,7 +39,7 @@ std::string	Contact::getdata(int data) const
 	}
 }
 
-void	Contact::setdata(int data, std::string str)
+void	Contact::setdata( int data, std::string str )
 {
 	switch (data)
 	{
@@ -64,7 +64,7 @@ void	Contact::setdata(int data, std::string str)
 	}
 }
 
-std::string	Contact::ft_prompt(int data) const
+std::string	Contact::ft_prompt( int data ) const
 {
 	switch (data)
 	{
