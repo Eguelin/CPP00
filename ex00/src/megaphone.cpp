@@ -6,7 +6,7 @@
 /*   By: eguelin <eguelin@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/30 15:03:59 by eguelin           #+#    #+#             */
-/*   Updated: 2023/10/05 12:57:50 by eguelin          ###   ########lyon.fr   */
+/*   Updated: 2023/11/21 20:29:15 by eguelin          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,8 +30,7 @@ int main( int const argc, char const **argv )
 std::string	ft_str_to_upper( std::string str )
 {
 	for (std::string::iterator it = str.begin(); it != str.end(); ++it)
-		if (std::islower(*it))
-			*it = std::toupper(*it);
+		*it = std::toupper(*it);
 
 	return (str);
 }
