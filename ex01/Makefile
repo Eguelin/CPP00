@@ -6,22 +6,31 @@
 #    By: eguelin <eguelin@student.42lyon.fr>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/09/30 15:03:56 by eguelin           #+#    #+#              #
-#    Updated: 2023/10/03 14:51:53 by eguelin          ###   ########lyon.fr    #
+#    Updated: 2023/11/21 23:41:49 by eguelin          ###   ########lyon.fr    #
 #                                                                              #
 # **************************************************************************** #
 
-#Standard
+.PHONY: all clean fclean re $(OUT_DIR)
+.SILENT:
+
+# **************************************************************************** #
+#                                   Variable                                   #
+# **************************************************************************** #
+
+NAME	= My_Awesome_PhoneBook
 OUT_DIR	= build/
 CLS_DIR = class/
 INC_DIR	= include/
 SRC_DIR	= src/
-NAME	= My_Awesome_PhoneBook
 CC		= c++
-CFLAGS	= -Wall -Werror -Wextra -std=c++98 -I $(INC_DIR) -I $(CLS_DIR)
-RM		= rm -rf
-ARC		= ar rcs
+CFLAGS	= -Wall -Werror -Wextra -std=c++98
+INC		= -I $(INC_DIR) -I $(CLS_DIR)
+RM		= rm -fr
 
-#Colors
+# **************************************************************************** #
+#                                    Colors                                    #
+# **************************************************************************** #
+
 BLACK	= \033[0;30m
 RED		= \033[0;31m
 GREEN	= \033[0;32m
@@ -30,52 +39,57 @@ BLUE	= \033[0;34m
 PURPLE	= \033[0;35m
 CYAN	= \033[0;36m
 WHITE	= \033[0;37m
+RESET	= \033[0;0m
 
-#Sentence
-COMP_MSG		= "$(GREEN)Compilation $(NAME) $(WHITE)done on $(YELLOW)$(shell date +'%Y-%m-%d %H:%M:%S')$(WHITE)"
-CLEAN_MSG		= "$(RED)Cleaning $(NAME) $(WHITE)done on $(YELLOW)$(shell date +'%Y-%m-%d %H:%M:%S')$(WHITE)"
-FULL_CLEAN_MSG	= "$(PURPLE)Full cleaning $(NAME) $(WHITE)done on $(YELLOW)$(shell date +'%Y-%m-%d %H:%M:%S')$(WHITE)"
+# **************************************************************************** #
+#                                    Message                                   #
+# **************************************************************************** #
 
-#Sources
-INC_FILES		= ft_utils.hpp
+COMP_MSG		= "$(GREEN)Compilation $(NAME) $(RESET)done on $(YELLOW)$(shell date +'%Y-%m-%d %H:%M:%S')$(RESET)"
+CLEAN_MSG		= "$(RED)Cleaning $(NAME) $(RESET)done on $(YELLOW)$(shell date +'%Y-%m-%d %H:%M:%S')$(RESET)"
+FULL_CLEAN_MSG	= "$(PURPLE)Full cleaning $(NAME) $(RESET)done on $(YELLOW)$(shell date +'%Y-%m-%d %H:%M:%S')$(RESET)"
+
+# **************************************************************************** #
+#                                    Sources                                   #
+# **************************************************************************** #
+
+INC_FILES		= text_color.hpp
 
 INC_CLS			= Contact.hpp PhoneBook.hpp
 
 HEADERS			= $(addprefix $(INC_DIR), $(INC_FILES)) $(addprefix $(CLS_DIR), $(INC_CLS))
 
-ALL_FILES		= main.cpp ft_utils.cpp
+ALL_FILES		= main.cpp
 
 CLS_FILES		= Contact.cpp PhoneBook.cpp
 
 OBJS			+= $(addprefix $(OUT_DIR), $(ALL_FILES:.cpp=.o) $(CLS_FILES:.cpp=.o))
 
-#Rules
+# **************************************************************************** #
+#                                     Rules                                    #
+# **************************************************************************** #
+
 all: $(NAME)
 
-$(NAME): $(OUT_DIR) $(OBJS)
-	$(CC) $(CFLAGS) $(OBJS) -o $(NAME)
-	@echo $(COMP_MSG)
+$(NAME): $(OBJS)
+	$(CC) $(CFLAGS) $(INC) $(OBJS) -o $(NAME)
+	echo $(COMP_MSG)
 
-$(OUT_DIR)%.o : $(SRC_DIR)%.cpp $(HEADERS)
-	$(CC) $(CFLAGS) -c $< -o $@
+$(OUT_DIR)%.o : $(SRC_DIR)%.cpp $(HEADERS) | $(OUT_DIR)
+	$(CC) $(CFLAGS) $(INC) -c $< -o $@
 
-$(OUT_DIR)%.o : $(CLS_DIR)%.cpp $(HEADERS)
-	$(CC) $(CFLAGS) -c $< -o $@
+$(OUT_DIR)%.o : $(CLS_DIR)%.cpp $(HEADERS) | $(OUT_DIR)
+	$(CC) $(CFLAGS) $(INC) -c $< -o $@
 
 clean:
 	$(RM) $(OUT_DIR)
-	@echo $(CLEAN_MSG)
+	echo $(CLEAN_MSG)
 
 fclean: clean
 	$(RM) $(NAME)
 	echo $(FULL_CLEAN_MSG)
 
-force:
-
 re: fclean all
 
-$(OUT_DIR): force
+$(OUT_DIR):
 	mkdir -p $(OUT_DIR)
-
-.PHONY: all clean fclean force re
-.SILENT:
