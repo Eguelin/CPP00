@@ -6,7 +6,7 @@
 #    By: eguelin <eguelin@student.42lyon.fr>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/09/30 15:03:56 by eguelin           #+#    #+#              #
-#    Updated: 2023/11/21 20:26:16 by eguelin          ###   ########lyon.fr    #
+#    Updated: 2023/11/21 23:31:11 by eguelin          ###   ########lyon.fr    #
 #                                                                              #
 # **************************************************************************** #
 
@@ -38,15 +38,15 @@ BLUE	= \033[0;34m
 PURPLE	= \033[0;35m
 CYAN	= \033[0;36m
 WHITE	= \033[0;37m
-NCOLOR	= \033[0;0m
+RESET	= \033[0;0m
 
 # **************************************************************************** #
 #                                    Message                                   #
 # **************************************************************************** #
 
-COMP_MSG		= "$(GREEN)Compilation $(NAME) $(NCOLOR)done on $(YELLOW)$(shell date +'%Y-%m-%d %H:%M:%S')$(NCOLOR)"
-CLEAN_MSG		= "$(RED)Cleaning $(NAME) $(NCOLOR)done on $(YELLOW)$(shell date +'%Y-%m-%d %H:%M:%S')$(NCOLOR)"
-FULL_CLEAN_MSG	= "$(PURPLE)Full cleaning $(NAME) $(NCOLOR)done on $(YELLOW)$(shell date +'%Y-%m-%d %H:%M:%S')$(NCOLOR)"
+COMP_MSG		= "$(GREEN)Compilation $(NAME) $(RESET)done on $(YELLOW)$(shell date +'%Y-%m-%d %H:%M:%S')$(RESET)"
+CLEAN_MSG		= "$(RED)Cleaning $(NAME) $(RESET)done on $(YELLOW)$(shell date +'%Y-%m-%d %H:%M:%S')$(RESET)"
+FULL_CLEAN_MSG	= "$(PURPLE)Full cleaning $(NAME) $(RESET)done on $(YELLOW)$(shell date +'%Y-%m-%d %H:%M:%S')$(RESET)"
 
 # **************************************************************************** #
 #                                    Sources                                   #
