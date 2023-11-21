@@ -6,7 +6,7 @@
 /*   By: eguelin <eguelin@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/02 17:23:08 by eguelin           #+#    #+#             */
-/*   Updated: 2023/11/22 00:25:23 by eguelin          ###   ########lyon.fr   */
+/*   Updated: 2023/11/22 00:28:58 by eguelin          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,6 @@ int	Account::getNbWithdrawals( void ) {return (Account::_totalNbWithdrawals);}
 void	Account::displayAccountsInfos( void )
 {
 	Account::_displayTimestamp();
-
 	std::cout << "accounts:" << Account::_nbAccounts << ";";
 	std::cout << "total:" << Account::_totalAmount << ";";
 	std::cout << "deposits:" << Account::_totalNbDeposits << ";";
@@ -63,7 +62,6 @@ Account::Account( int initial_deposit )
 Account::~Account( void )
 {
 	Account::_displayTimestamp();
-
 	std::cout << "index:" << this->_accountIndex << ";";
 	std::cout << "amount:" << this->_amount << ";";
 	std::cout << "closed" << std::endl;
@@ -78,7 +76,6 @@ void	Account::makeDeposit( int deposit )
 	this->_nbDeposits++;
 
 	Account::_displayTimestamp();
-
 	std::cout << "index:" << this->_accountIndex << ";";
 	std::cout << "p_amount:" << this->_amount << ";";
 	std::cout << "deposit:" << deposit << ";";
@@ -128,13 +125,11 @@ int		Account::checkAmount( void ) const
 void	Account::displayStatus( void ) const
 {
 	Account::_displayTimestamp();
-
 	std::cout << "index:" << this->_accountIndex << ";";
 	std::cout << "amount:" << this->_amount << ";";
 	std::cout << "deposits:" << this->_nbDeposits << ";";
 	std::cout << "withdrawals:" << this->_nbWithdrawals << std::endl;
 }
-
 
 /* ************************************************************************** */
 /*                       Private static member variables                      */
