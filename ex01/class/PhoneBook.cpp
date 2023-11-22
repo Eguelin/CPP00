@@ -6,7 +6,7 @@
 /*   By: eguelin <eguelin@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/30 19:05:08 by eguelin           #+#    #+#             */
-/*   Updated: 2023/11/22 14:36:39 by eguelin          ###   ########lyon.fr   */
+/*   Updated: 2023/11/22 15:08:41 by eguelin          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,15 +35,11 @@ PhoneBook::PhoneBook( void ): _index(0), _nb_index(0)
 	this->_set[NICKNAME] = &Contact::set_nickname;
 	this->_set[PHONE_NUMBER] = &Contact::set_phone_number;
 	this->_set[DARKEST_SECRET] = &Contact::set_darkest_secret;
-
-	return ;
 }
 
 PhoneBook::~PhoneBook( void )
 {
 	std::cout << BLACK << "PhoneBook destructor called" << RESET_TEXT << std::endl;
-
-	return ;
 }
 
 /* ************************************************************************** */
