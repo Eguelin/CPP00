@@ -6,7 +6,7 @@
 /*   By: eguelin <eguelin@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/30 19:05:19 by eguelin           #+#    #+#             */
-/*   Updated: 2023/11/21 23:55:22 by eguelin          ###   ########lyon.fr   */
+/*   Updated: 2023/11/22 12:52:38 by eguelin          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,14 +27,6 @@ typedef enum e_data
 
 class Contact
 {
-	private:
-
-		std::string	_first_name;
-		std::string	_last_name;
-		std::string	_nickname;
-		std::string	_phone_number;
-		std::string	_darkest_secret;
-
 	public:
 
 		Contact( void );
@@ -53,6 +45,14 @@ class Contact
 		void				set_darkest_secret( const std::string str );
 
 		const std::string	ft_prompt( int data ) const;
+
+	private:
+
+		std::string	_first_name;
+		std::string	_last_name;
+		std::string	_nickname;
+		std::string	_phone_number;
+		std::string	_darkest_secret;
 };
 
 #endif

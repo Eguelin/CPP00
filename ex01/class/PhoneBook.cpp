@@ -6,12 +6,11 @@
 /*   By: eguelin <eguelin@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/30 19:05:08 by eguelin           #+#    #+#             */
-/*   Updated: 2023/11/22 00:18:50 by eguelin          ###   ########lyon.fr   */
+/*   Updated: 2023/11/22 14:36:39 by eguelin          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "PhoneBook.hpp"
-#include <cstdlib>
 
 static int	ft_check_index( const std::string str, int max );
 static void	ft_print_columns( const std::string str );
@@ -25,17 +24,17 @@ PhoneBook::PhoneBook( void ): _index(0), _nb_index(0)
 {
 	std::cout << BLACK << "PhoneBook constructor called" << RESET_TEXT << std::endl;
 
-	get[FIRST_NAME] = &Contact::get_first_name;
-	get[LAST_NAME] = &Contact::get_last_name;
-	get[NICKNAME] = &Contact::get_nickname;
-	get[PHONE_NUMBER] = &Contact::get_phone_number;
-	get[DARKEST_SECRET] = &Contact::get_darkest_secret;
+	this->_get[FIRST_NAME] = &Contact::get_first_name;
+	this->_get[LAST_NAME] = &Contact::get_last_name;
+	this->_get[NICKNAME] = &Contact::get_nickname;
+	this->_get[PHONE_NUMBER] = &Contact::get_phone_number;
+	this->_get[DARKEST_SECRET] = &Contact::get_darkest_secret;
 
-	set[FIRST_NAME] = &Contact::set_first_name;
-	set[LAST_NAME] = &Contact::set_last_name;
-	set[NICKNAME] = &Contact::set_nickname;
-	set[PHONE_NUMBER] = &Contact::set_phone_number;
-	set[DARKEST_SECRET] = &Contact::set_darkest_secret;
+	this->_set[FIRST_NAME] = &Contact::set_first_name;
+	this->_set[LAST_NAME] = &Contact::set_last_name;
+	this->_set[NICKNAME] = &Contact::set_nickname;
+	this->_set[PHONE_NUMBER] = &Contact::set_phone_number;
+	this->_set[DARKEST_SECRET] = &Contact::set_darkest_secret;
 
 	return ;
 }
@@ -58,7 +57,7 @@ void	PhoneBook::add( void )
 
 	while (i <= DARKEST_SECRET && line == "")
 	{
-		std::cout << this->_contact[this->_index].ft_prompt(i);
+		std::cout << YELLOW << this->_contact[this->_index].ft_prompt(i) << RESET_TEXT;
 		std::getline(std::cin, line);
 
 		if (std::cin.eof())
@@ -67,7 +66,7 @@ void	PhoneBook::add( void )
 			std::cerr << RED << "Invalid input" << RESET_TEXT << std::endl;
 		else
 		{
-			(this->_contact[this->_index].*set[i])(line);
+			(this->_contact[this->_index].*_set[i])(line);
 			i++;
 		}
 
@@ -88,6 +87,7 @@ void	PhoneBook::search( void ) const
 	int					index = -1;
 	std::string			line;
 
+	std::cout << CYAN;
 	std::cout << "|     Index|First name| Last name|  Nickname|" << std::endl;
 	std::cout << "|----------|----------|----------|----------|" << std::endl;
 
@@ -96,28 +96,34 @@ void	PhoneBook::search( void ) const
 		std::cout << "|         " << (i + 1) << "|";
 
 		for (int j = FIRST_NAME; j <= NICKNAME; j++)
-			ft_print_columns((this->_contact[i].*get[j])());
+			ft_print_columns((this->_contact[i].*_get[j])());
 
 		std::cout << std::endl;
 		std::cout << "|----------|----------|----------|----------|" << std::endl;
 	}
+
+	std::cout << RESET_TEXT;
 
 	if (!this->_nb_index)
 		return ;
 
 	while (index == -1)
 	{
-		std::cout << "Enter the desired index : ";
+		std::cout << YELLOW << "Enter the desired index : " << RESET_TEXT;
 		std::getline(std::cin, line);
 
 		if (std::cin.eof())
 			return ;
 
-		index = ft_check_index(line, this->_nb_index - 1);
+		index = ft_check_index(line, this->_nb_index);
 	}
 
+	std::cout << CYAN;
+
 	for (int i = FIRST_NAME; i <= DARKEST_SECRET; i++)
-		std::cout << this->_contact[index].ft_prompt(i) << (this->_contact[index].*get[i])() << std::endl;
+		std::cout << this->_contact[index].ft_prompt(i) << (this->_contact[index].*_get[i])() << std::endl;
+
+	std::cout << RESET_TEXT;
 }
 
 /* ************************************************************************** */
@@ -127,25 +133,27 @@ void	PhoneBook::search( void ) const
 
 static int	ft_check_index( const std::string str, int max )
 {
-	int							index;
+	int							index = 0;
 	std::string::const_iterator	it = str.begin();
 
 	while (it != str.end() && std::isspace(*it))
 		++it;
-	while (it != str.end() && std::isdigit(*it))
+	while (it != str.end() && std::isdigit(*it) && index <= max)
+	{
+		index = index * 10 + ((char)*it - '0');
 		++it;
+	}
 	while (it != str.end() && std::isspace(*it))
 		++it;
 
-	index = std::atoi(str.c_str()) - 1;
-	if (index < 0 || index > max || it != str.end())
+	if (index < 1 || index > max || it != str.end())
 	{
-		std::cerr << RED << "Invalid index" << RESET_TEXT << std::endl;
+		std::cerr << RED << " Invalid index" << RESET_TEXT << std::endl;
 
 		return (-1);
 	}
 
-	return (index);
+	return (index - 1);
 }
 
 static void	ft_print_columns( const std::string str )

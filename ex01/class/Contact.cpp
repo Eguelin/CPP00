@@ -6,7 +6,7 @@
 /*   By: eguelin <eguelin@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/30 19:05:25 by eguelin           #+#    #+#             */
-/*   Updated: 2023/11/22 00:03:07 by eguelin          ###   ########lyon.fr   */
+/*   Updated: 2023/11/22 14:17:36 by eguelin          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,11 +60,11 @@ void	Contact::set_darkest_secret( const std::string str ) {this->_darkest_secret
 
 const std::string	Contact::ft_prompt( int data ) const
 {
-	const std::string prompt[] = {YELLOW "First name: " RESET_TEXT,
-								YELLOW "Last name: " RESET_TEXT,
-								YELLOW "Nickname: " RESET_TEXT,
-								YELLOW "Phone number: " RESET_TEXT,
-								YELLOW "Darkest secret: " RESET_TEXT};
+	const std::string prompt[] = {"First name: ",
+								"Last name: ",
+								"Nickname: ",
+								"Phone number: ",
+								"Darkest secret: "};
 
 	if (data < FIRST_NAME || data > DARKEST_SECRET)
 	{
