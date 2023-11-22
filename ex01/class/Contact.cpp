@@ -6,7 +6,7 @@
 /*   By: eguelin <eguelin@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/30 19:05:25 by eguelin           #+#    #+#             */
-/*   Updated: 2023/11/22 15:15:25 by eguelin          ###   ########lyon.fr   */
+/*   Updated: 2023/11/22 17:06:39 by eguelin          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ Contact::~Contact( void )
 }
 
 /* ************************************************************************** */
-/*                              Getters & Settres                             */
+/*                              Getters & Setters                             */
 /* ************************************************************************** */
 
 const std::string	&Contact::get_first_name( void ) const {return(this->_first_name);}
