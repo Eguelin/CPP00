@@ -6,7 +6,7 @@
 /*   By: eguelin <eguelin@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/30 19:05:25 by eguelin           #+#    #+#             */
-/*   Updated: 2023/11/22 17:06:39 by eguelin          ###   ########lyon.fr   */
+/*   Updated: 2023/11/23 18:34:42 by eguelin          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,12 +18,12 @@
 
 Contact::Contact( void )
 {
-	std::cout << BLACK << "Contact constructor called" << RESET_TEXT << std::endl;
+	std::cout << BLACK_T << "Contact constructor called" << RESET_T << std::endl;
 }
 
 Contact::~Contact( void )
 {
-	std::cout << BLACK << "Contact destructor called" << RESET_TEXT << std::endl;
+	std::cout << BLACK_T << "Contact destructor called" << RESET_T << std::endl;
 }
 
 /* ************************************************************************** */
@@ -64,7 +64,7 @@ const std::string	Contact::ft_prompt( int data ) const
 
 	if (data < FIRST_NAME || data > DARKEST_SECRET)
 	{
-		std::cerr << RED << "Invalid data" << RESET_TEXT << std::endl;
+		std::cerr << RED_T << "Invalid data" << RESET_T << std::endl;
 
 		return ("");
 	}

@@ -6,7 +6,7 @@
 /*   By: eguelin <eguelin@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/30 19:05:08 by eguelin           #+#    #+#             */
-/*   Updated: 2023/11/22 15:08:41 by eguelin          ###   ########lyon.fr   */
+/*   Updated: 2023/11/23 18:35:56 by eguelin          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ static bool	ft_check_line( const std::string str );
 
 PhoneBook::PhoneBook( void ): _index(0), _nb_index(0)
 {
-	std::cout << BLACK << "PhoneBook constructor called" << RESET_TEXT << std::endl;
+	std::cout << BLACK_T << "PhoneBook constructor called" << RESET_T << std::endl;
 
 	this->_get[FIRST_NAME] = &Contact::get_first_name;
 	this->_get[LAST_NAME] = &Contact::get_last_name;
@@ -39,7 +39,7 @@ PhoneBook::PhoneBook( void ): _index(0), _nb_index(0)
 
 PhoneBook::~PhoneBook( void )
 {
-	std::cout << BLACK << "PhoneBook destructor called" << RESET_TEXT << std::endl;
+	std::cout << BLACK_T << "PhoneBook destructor called" << RESET_T << std::endl;
 }
 
 /* ************************************************************************** */
@@ -53,13 +53,13 @@ void	PhoneBook::add( void )
 
 	while (i <= DARKEST_SECRET && line == "")
 	{
-		std::cout << YELLOW << this->_contact[this->_index].ft_prompt(i) << RESET_TEXT;
+		std::cout << YELLOW_T << this->_contact[this->_index].ft_prompt(i) << RESET_T;
 		std::getline(std::cin, line);
 
 		if (std::cin.eof())
 			return ;
 		else if (ft_check_line(line) == false)
-			std::cerr << RED << "Invalid input" << RESET_TEXT << std::endl;
+			std::cerr << RED_T << "Invalid input" << RESET_T << std::endl;
 		else
 		{
 			(this->_contact[this->_index].*_set[i])(line);
@@ -83,7 +83,7 @@ void	PhoneBook::search( void ) const
 	int					index = -1;
 	std::string			line;
 
-	std::cout << CYAN;
+	std::cout << CYAN_T;
 	std::cout << "|     Index|First name| Last name|  Nickname|" << std::endl;
 	std::cout << "|----------|----------|----------|----------|" << std::endl;
 
@@ -98,14 +98,14 @@ void	PhoneBook::search( void ) const
 		std::cout << "|----------|----------|----------|----------|" << std::endl;
 	}
 
-	std::cout << RESET_TEXT;
+	std::cout << RESET_T;
 
 	if (!this->_nb_index)
 		return ;
 
 	while (index == -1)
 	{
-		std::cout << YELLOW << "Enter the desired index : " << RESET_TEXT;
+		std::cout << YELLOW_T << "Enter the desiRED_T index : " << RESET_T;
 		std::getline(std::cin, line);
 
 		if (std::cin.eof())
@@ -114,12 +114,12 @@ void	PhoneBook::search( void ) const
 		index = ft_check_index(line, this->_nb_index);
 	}
 
-	std::cout << CYAN;
+	std::cout << CYAN_T;
 
 	for (int i = FIRST_NAME; i <= DARKEST_SECRET; i++)
 		std::cout << this->_contact[index].ft_prompt(i) << (this->_contact[index].*_get[i])() << std::endl;
 
-	std::cout << RESET_TEXT;
+	std::cout << RESET_T;
 }
 
 /* ************************************************************************** */
@@ -144,7 +144,7 @@ static int	ft_check_index( const std::string str, int max )
 
 	if (index < 1 || index > max || it != str.end())
 	{
-		std::cerr << RED << " Invalid index" << RESET_TEXT << std::endl;
+		std::cerr << RED_T << " Invalid index" << RESET_T << std::endl;
 
 		return (-1);
 	}
