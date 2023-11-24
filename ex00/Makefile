@@ -6,7 +6,7 @@
 #    By: eguelin <eguelin@student.42lyon.fr>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/09/30 15:03:56 by eguelin           #+#    #+#              #
-#    Updated: 2023/11/21 23:26:09 by eguelin          ###   ########lyon.fr    #
+#    Updated: 2023/11/24 17:19:08 by eguelin          ###   ########lyon.fr    #
 #                                                                              #
 # **************************************************************************** #
 
@@ -61,11 +61,11 @@ OBJS			= $(addprefix $(OUT_DIR), $(ALL_FILES:.cpp=.o))
 all: $(NAME)
 
 $(NAME): $(OBJS)
-	$(CC) $(CFLAGS) $(INC) $(OBJS) -o $(NAME)
+	$(CC) $(CFLAGS) $(OBJS) -o $(NAME)
 	@echo $(COMP_MSG)
 
-$(OUT_DIR)%.o : $(SRC_DIR)%.cpp $(HEADERS) | $(OUT_DIR)
-	$(CC) $(CFLAGS) $(INC) -c $< -o $@
+$(OUT_DIR)%.o : $(SRC_DIR)%.cpp | $(OUT_DIR)
+	$(CC) $(CFLAGS) -c $< -o $@
 
 clean:
 	$(RM) $(OUT_DIR)

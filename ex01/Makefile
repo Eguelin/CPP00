@@ -6,7 +6,7 @@
 #    By: eguelin <eguelin@student.42lyon.fr>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/09/30 15:03:56 by eguelin           #+#    #+#              #
-#    Updated: 2023/11/21 23:41:49 by eguelin          ###   ########lyon.fr    #
+#    Updated: 2023/11/24 17:18:25 by eguelin          ###   ########lyon.fr    #
 #                                                                              #
 # **************************************************************************** #
 
@@ -57,13 +57,13 @@ INC_FILES		= text_color.hpp
 
 INC_CLS			= Contact.hpp PhoneBook.hpp
 
-HEADERS			= $(addprefix $(INC_DIR), $(INC_FILES)) $(addprefix $(CLS_DIR), $(INC_CLS))
-
 ALL_FILES		= main.cpp
 
 CLS_FILES		= Contact.cpp PhoneBook.cpp
 
-OBJS			+= $(addprefix $(OUT_DIR), $(ALL_FILES:.cpp=.o) $(CLS_FILES:.cpp=.o))
+OBJ_FILES	= $(addprefix $(OUT_DIR), $(ALL_FILES:.cpp=.o) $(CLS_FILES:.cpp=.o))
+
+DEP_FILES	= $(OBJ_FILES:.o=.d)
 
 # **************************************************************************** #
 #                                     Rules                                    #
@@ -71,15 +71,15 @@ OBJS			+= $(addprefix $(OUT_DIR), $(ALL_FILES:.cpp=.o) $(CLS_FILES:.cpp=.o))
 
 all: $(NAME)
 
-$(NAME): $(OBJS)
-	$(CC) $(CFLAGS) $(INC) $(OBJS) -o $(NAME)
+$(NAME): $(OBJ_FILES)
+	$(CC) $(CFLAGS) $(INC) $(OBJ_FILES) -o $(NAME)
 	echo $(COMP_MSG)
 
-$(OUT_DIR)%.o : $(SRC_DIR)%.cpp $(HEADERS) | $(OUT_DIR)
-	$(CC) $(CFLAGS) $(INC) -c $< -o $@
+$(OUT_DIR)%.o: $(SRC_DIR)%.cpp | $(OUT_DIR)
+	$(CC) $(CFLAGS) $(INC) -MMD -c $< -o $@
 
-$(OUT_DIR)%.o : $(CLS_DIR)%.cpp $(HEADERS) | $(OUT_DIR)
-	$(CC) $(CFLAGS) $(INC) -c $< -o $@
+$(OUT_DIR)%.o: $(CLS_DIR)%.cpp | $(OUT_DIR)
+	$(CC) $(CFLAGS) $(INC) -MMD -c $< -o $@
 
 clean:
 	$(RM) $(OUT_DIR)
@@ -93,3 +93,5 @@ re: fclean all
 
 $(OUT_DIR):
 	mkdir -p $(OUT_DIR)
+
+-include $(DEP_FILES)

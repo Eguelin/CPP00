@@ -1,6 +1,7 @@
 a.out*
 .DS_Store
 *.o
+*.d
 build
 megaphone
 My_Awesome_PhoneBook

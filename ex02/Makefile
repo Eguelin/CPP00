@@ -6,7 +6,7 @@
 #    By: eguelin <eguelin@student.42lyon.fr>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/09/30 15:03:56 by eguelin           #+#    #+#              #
-#    Updated: 2023/11/21 23:31:11 by eguelin          ###   ########lyon.fr    #
+#    Updated: 2023/11/24 17:19:56 by eguelin          ###   ########lyon.fr    #
 #                                                                              #
 # **************************************************************************** #
 
@@ -52,15 +52,15 @@ FULL_CLEAN_MSG	= "$(PURPLE)Full cleaning $(NAME) $(RESET)done on $(YELLOW)$(shel
 #                                    Sources                                   #
 # **************************************************************************** #
 
-INC_CLS			= Account.hpp
+INC_CLS		= Account.hpp
 
-HEADERS			= $(addprefix $(CLS_DIR), $(INC_CLS))
+ALL_FILES	= tests.cpp
 
-ALL_FILES		= tests.cpp
+CLS_FILES	= Account.cpp
 
-CLS_FILES		= Account.cpp
+OBJ_FILES	= $(addprefix $(OUT_DIR), $(ALL_FILES:.cpp=.o) $(CLS_FILES:.cpp=.o))
 
-OBJS			+= $(addprefix $(OUT_DIR), $(ALL_FILES:.cpp=.o) $(CLS_FILES:.cpp=.o))
+DEP_FILES	= $(OBJ_FILES:.o=.d)
 
 # **************************************************************************** #
 #                                     Rules                                    #
@@ -68,15 +68,15 @@ OBJS			+= $(addprefix $(OUT_DIR), $(ALL_FILES:.cpp=.o) $(CLS_FILES:.cpp=.o))
 
 all: $(NAME)
 
-$(NAME): $(OBJS)
-	$(CC) $(CFLAGS) $(INC) $(OBJS) -o $(NAME)
-	@echo $(COMP_MSG)
+$(NAME): $(OBJ_FILES)
+	$(CC) $(CFLAGS) $(INC) $(OBJ_FILES) -o $(NAME)
+	echo $(COMP_MSG)
 
-$(OUT_DIR)%.o : $(SRC_DIR)%.cpp $(HEADERS) | $(OUT_DIR)
-	$(CC) $(CFLAGS) $(INC) -c $< -o $@
+$(OUT_DIR)%.o: $(SRC_DIR)%.cpp | $(OUT_DIR)
+	$(CC) $(CFLAGS) $(INC) -MMD -c $< -o $@
 
-$(OUT_DIR)%.o : $(CLS_DIR)%.cpp $(HEADERS) | $(OUT_DIR)
-	$(CC) $(CFLAGS) $(INC) -c $< -o $@
+$(OUT_DIR)%.o: $(CLS_DIR)%.cpp | $(OUT_DIR)
+	$(CC) $(CFLAGS) $(INC) -MMD -c $< -o $@
 
 clean:
 	$(RM) $(OUT_DIR)
@@ -90,3 +90,5 @@ re: fclean all
 
 $(OUT_DIR):
 	mkdir -p $(OUT_DIR)
+
+-include $(DEP_FILES)
