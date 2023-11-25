@@ -6,7 +6,7 @@
 /*   By: eguelin <eguelin@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/30 19:05:25 by eguelin           #+#    #+#             */
-/*   Updated: 2023/11/23 18:34:42 by eguelin          ###   ########lyon.fr   */
+/*   Updated: 2023/11/25 18:07:15 by eguelin          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,12 +18,12 @@
 
 Contact::Contact( void )
 {
-	std::cout << BLACK_T << "Contact constructor called" << RESET_T << std::endl;
+	std::cout << GREEN_T << "Contact constructor called" << RESET_T << std::endl;
 }
 
 Contact::~Contact( void )
 {
-	std::cout << BLACK_T << "Contact destructor called" << RESET_T << std::endl;
+	std::cout << RED_T << "Contact destructor called" << RESET_T << std::endl;
 }
 
 /* ************************************************************************** */
