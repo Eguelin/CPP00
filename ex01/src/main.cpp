@@ -6,7 +6,7 @@
 /*   By: eguelin <eguelin@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/30 19:39:04 by eguelin           #+#    #+#             */
-/*   Updated: 2023/11/25 18:09:55 by eguelin          ###   ########lyon.fr   */
+/*   Updated: 2023/11/25 19:53:44 by eguelin          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,9 +28,12 @@ int main( void )
 		if (std::cin.eof())
 		{
 			std::cout << "EXIT" << std::endl << std::endl;
+
 			return (0);
 		}
+
 		std::cout << YELLOW_T << "Enter a command: " << RESET_T;
+
 		std::getline(std::cin, line);
 		if (line == "ADD")
 			PhoneBook.add();
