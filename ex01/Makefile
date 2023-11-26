@@ -6,7 +6,7 @@
 #    By: eguelin <eguelin@student.42lyon.fr>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/09/30 15:03:56 by eguelin           #+#    #+#              #
-#    Updated: 2023/11/24 17:18:25 by eguelin          ###   ########lyon.fr    #
+#    Updated: 2023/11/26 17:41:17 by eguelin          ###   ########lyon.fr    #
 #                                                                              #
 # **************************************************************************** #
 
@@ -53,15 +53,16 @@ FULL_CLEAN_MSG	= "$(PURPLE)Full cleaning $(NAME) $(RESET)done on $(YELLOW)$(shel
 #                                    Sources                                   #
 # **************************************************************************** #
 
-INC_FILES		= text_color.hpp
+CLS_FILES	= Contact.cpp \
+			  PhoneBook.cpp
 
-INC_CLS			= Contact.hpp PhoneBook.hpp
+ALL_FILES	= $(addprefix $(CLS_DIR), $(CLS_FILES))
 
-ALL_FILES		= main.cpp
+SRC_FILES	= main.cpp
 
-CLS_FILES		= Contact.cpp PhoneBook.cpp
+ALL_FILES	+= $(addprefix $(SRC_DIR), $(SRC_FILES))
 
-OBJ_FILES	= $(addprefix $(OUT_DIR), $(ALL_FILES:.cpp=.o) $(CLS_FILES:.cpp=.o))
+OBJ_FILES	= $(addprefix $(OUT_DIR), $(ALL_FILES:.cpp=.o))
 
 DEP_FILES	= $(OBJ_FILES:.o=.d)
 
@@ -75,12 +76,8 @@ $(NAME): $(OBJ_FILES)
 	$(CC) $(CFLAGS) $(INC) $(OBJ_FILES) -o $(NAME)
 	echo $(COMP_MSG)
 
-$(OUT_DIR)%.o: $(SRC_DIR)%.cpp | $(OUT_DIR)
+$(OUT_DIR)%.o: %.cpp | $(OUT_DIR)
 	$(CC) $(CFLAGS) $(INC) -MMD -c $< -o $@
-
-$(OUT_DIR)%.o: $(CLS_DIR)%.cpp | $(OUT_DIR)
-	$(CC) $(CFLAGS) $(INC) -MMD -c $< -o $@
-
 clean:
 	$(RM) $(OUT_DIR)
 	echo $(CLEAN_MSG)
@@ -92,6 +89,6 @@ fclean: clean
 re: fclean all
 
 $(OUT_DIR):
-	mkdir -p $(OUT_DIR)
+	mkdir -p $(OUT_DIR)$(CLS_DIR) $(OUT_DIR)$(SRC_DIR)
 
 -include $(DEP_FILES)
