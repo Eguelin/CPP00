@@ -6,7 +6,7 @@
 /*   By: eguelin <eguelin@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/30 19:39:04 by eguelin           #+#    #+#             */
-/*   Updated: 2023/11/25 19:53:44 by eguelin          ###   ########lyon.fr   */
+/*   Updated: 2023/11/29 13:50:49 by eguelin          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ int main( void )
 	std::cout << BCYAN_T << "Welcome to PhoneBook" << std::endl;
 	std::cout << "ADD : Enables a new contact to be registeRED_T." << std::endl;
 	std::cout << "SEARCH: Displays the list of saved contacts." << std::endl;
-	std::cout << "EXIT: Exits the program." << RESET_T << std::endl;
+	std::cout << "EXIT: Exits the program." << DEFAULT_T << std::endl;
 
 	while (line != "EXIT")
 	{
@@ -32,7 +32,7 @@ int main( void )
 			return (0);
 		}
 
-		std::cout << YELLOW_T << "Enter a command: " << RESET_T;
+		std::cout << YELLOW_T << "Enter a command: " << DEFAULT_T;
 
 		std::getline(std::cin, line);
 		if (line == "ADD")

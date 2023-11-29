@@ -6,11 +6,11 @@
 #    By: eguelin <eguelin@student.42lyon.fr>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/09/30 15:03:56 by eguelin           #+#    #+#              #
-#    Updated: 2023/11/26 17:42:30 by eguelin          ###   ########lyon.fr    #
+#    Updated: 2023/11/29 14:41:17 by eguelin          ###   ########lyon.fr    #
 #                                                                              #
 # **************************************************************************** #
 
-.PHONY: all clean fclean re $(OUT_DIR)
+.PHONY: all clean fclean re
 .SILENT:
 
 # **************************************************************************** #
@@ -18,7 +18,7 @@
 # **************************************************************************** #
 
 NAME	= Class_Account_tests
-OUT_DIR	= build/
+OBJ_DIR	= .obj/
 CLS_DIR = class/
 SRC_DIR	= src/
 CC		= c++
@@ -38,15 +38,15 @@ BLUE	= \033[0;34m
 PURPLE	= \033[0;35m
 CYAN	= \033[0;36m
 WHITE	= \033[0;37m
-RESET	= \033[0;0m
+DEFAULT	= \033[0;0m
 
 # **************************************************************************** #
 #                                    Message                                   #
 # **************************************************************************** #
 
-COMP_MSG		= "$(GREEN)Compilation $(NAME) $(RESET)done on $(YELLOW)$(shell date +'%Y-%m-%d %H:%M:%S')$(RESET)"
-CLEAN_MSG		= "$(RED)Cleaning $(NAME) $(RESET)done on $(YELLOW)$(shell date +'%Y-%m-%d %H:%M:%S')$(RESET)"
-FULL_CLEAN_MSG	= "$(PURPLE)Full cleaning $(NAME) $(RESET)done on $(YELLOW)$(shell date +'%Y-%m-%d %H:%M:%S')$(RESET)"
+COMP_MSG		= "$(GREEN)Compilation $(NAME) $(DEFAULT)done on $(YELLOW)$(shell date +'%Y-%m-%d %H:%M:%S')$(DEFAULT)"
+CLEAN_MSG		= "$(RED)Cleaning $(NAME) $(DEFAULT)done on $(YELLOW)$(shell date +'%Y-%m-%d %H:%M:%S')$(DEFAULT)"
+FULL_CLEAN_MSG	= "$(PURPLE)Full cleaning $(NAME) $(DEFAULT)done on $(YELLOW)$(shell date +'%Y-%m-%d %H:%M:%S')$(DEFAULT)"
 
 # **************************************************************************** #
 #                                    Sources                                   #
@@ -60,7 +60,7 @@ SRC_FILES	= tests.cpp
 
 ALL_FILES	+= $(addprefix $(SRC_DIR), $(SRC_FILES))
 
-OBJ_FILES	= $(addprefix $(OUT_DIR), $(ALL_FILES:.cpp=.o))
+OBJ_FILES	= $(addprefix $(OBJ_DIR), $(ALL_FILES:.cpp=.o))
 
 DEP_FILES	= $(OBJ_FILES:.o=.d)
 
@@ -74,10 +74,10 @@ $(NAME): $(OBJ_FILES)
 	$(CC) $(CFLAGS) $(INC) $(OBJ_FILES) -o $(NAME)
 	echo $(COMP_MSG)
 
-$(OUT_DIR)%.o: %.cpp | $(OUT_DIR)
+$(OBJ_DIR)%.o: %.cpp | $(OBJ_DIR)
 	$(CC) $(CFLAGS) $(INC) -MMD -c $< -o $@
 clean:
-	$(RM) $(OUT_DIR)
+	$(RM) $(OBJ_DIR)
 	echo $(CLEAN_MSG)
 
 fclean: clean
@@ -86,7 +86,7 @@ fclean: clean
 
 re: fclean all
 
-$(OUT_DIR):
-	mkdir -p $(OUT_DIR)$(CLS_DIR) $(OUT_DIR)$(SRC_DIR)
+$(OBJ_DIR):
+	mkdir -p $(OBJ_DIR)$(CLS_DIR) $(OBJ_DIR)$(SRC_DIR)
 
 -include $(DEP_FILES)

@@ -6,11 +6,11 @@
 #    By: eguelin <eguelin@student.42lyon.fr>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/09/30 15:03:56 by eguelin           #+#    #+#              #
-#    Updated: 2023/11/24 17:19:08 by eguelin          ###   ########lyon.fr    #
+#    Updated: 2023/11/29 14:41:17 by eguelin          ###   ########lyon.fr    #
 #                                                                              #
 # **************************************************************************** #
 
-.PHONY: all clean fclean re $(OUT_DIR)
+.PHONY: all clean fclean re
 .SILENT:
 
 # **************************************************************************** #
@@ -18,7 +18,7 @@
 # **************************************************************************** #
 
 NAME	= megaphone
-OUT_DIR	= build/
+OBJ_DIR	= .obj/
 SRC_DIR	= src/
 CC		= c++
 CFLAGS	= -Wall -Werror -Wextra -std=c++98
@@ -36,15 +36,15 @@ BLUE	= \033[0;34m
 PURPLE	= \033[0;35m
 CYAN	= \033[0;36m
 WHITE	= \033[0;37m
-RESET	= \033[0m
+DEFAULT	= \033[0m
 
 # **************************************************************************** #
 #                                    Message                                   #
 # **************************************************************************** #
 
-COMP_MSG		= "$(GREEN)Compilation $(NAME) $(RESET)done on $(YELLOW)$(shell date +'%Y-%m-%d %H:%M:%S')$(RESET)"
-CLEAN_MSG		= "$(RED)Cleaning $(NAME) $(RESET)done on $(YELLOW)$(shell date +'%Y-%m-%d %H:%M:%S')$(RESET)"
-FULL_CLEAN_MSG	= "$(PURPLE)Full cleaning $(NAME) $(RESET)done on $(YELLOW)$(shell date +'%Y-%m-%d %H:%M:%S')$(RESET)"
+COMP_MSG		= "$(GREEN)Compilation $(NAME) $(DEFAULT)done on $(YELLOW)$(shell date +'%Y-%m-%d %H:%M:%S')$(DEFAULT)"
+CLEAN_MSG		= "$(RED)Cleaning $(NAME) $(DEFAULT)done on $(YELLOW)$(shell date +'%Y-%m-%d %H:%M:%S')$(DEFAULT)"
+FULL_CLEAN_MSG	= "$(PURPLE)Full cleaning $(NAME) $(DEFAULT)done on $(YELLOW)$(shell date +'%Y-%m-%d %H:%M:%S')$(DEFAULT)"
 
 # **************************************************************************** #
 #                                    Sources                                   #
@@ -52,7 +52,7 @@ FULL_CLEAN_MSG	= "$(PURPLE)Full cleaning $(NAME) $(RESET)done on $(YELLOW)$(shel
 
 ALL_FILES		= megaphone.cpp
 
-OBJS			= $(addprefix $(OUT_DIR), $(ALL_FILES:.cpp=.o))
+OBJS			= $(addprefix $(OBJ_DIR), $(ALL_FILES:.cpp=.o))
 
 # **************************************************************************** #
 #                                     Rules                                    #
@@ -64,11 +64,11 @@ $(NAME): $(OBJS)
 	$(CC) $(CFLAGS) $(OBJS) -o $(NAME)
 	@echo $(COMP_MSG)
 
-$(OUT_DIR)%.o : $(SRC_DIR)%.cpp | $(OUT_DIR)
+$(OBJ_DIR)%.o : $(SRC_DIR)%.cpp | $(OBJ_DIR)
 	$(CC) $(CFLAGS) -c $< -o $@
 
 clean:
-	$(RM) $(OUT_DIR)
+	$(RM) $(OBJ_DIR)
 	echo $(CLEAN_MSG)
 
 fclean: clean
@@ -77,5 +77,5 @@ fclean: clean
 
 re: fclean all
 
-$(OUT_DIR):
-	mkdir -p $(OUT_DIR)
+$(OBJ_DIR):
+	mkdir -p $(OBJ_DIR)

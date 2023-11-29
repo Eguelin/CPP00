@@ -1,8 +1,7 @@
-a.out*
-.DS_Store
+*.out*
 *.o
 *.d
-build
+.obj
 megaphone
 My_Awesome_PhoneBook
 Class_Account_tests

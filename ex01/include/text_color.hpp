@@ -6,14 +6,14 @@
 /*   By: eguelin <eguelin@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/30 19:28:39 by eguelin           #+#    #+#             */
-/*   Updated: 2023/11/25 19:23:44 by eguelin          ###   ########lyon.fr   */
+/*   Updated: 2023/11/29 13:50:49 by eguelin          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef TEXT_COLOR_HPP
 # define TEXT_COLOR_HPP
 
-# define RESET_T "\033[0m"
+# define DEFAULT_T "\033[0m"
 
 # define BLACK_T "\033[30m"
 # define RED_T "\033[31m"
